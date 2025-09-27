@@ -135,33 +135,7 @@
         
         <div class="button-group">
             <a href="/login" class="btn login-btn">Go to Login</a>
-            <a href="/" class="btn">Return to Home</a>
-        </div>
-        
-        <div class="countdown" id="countdown">
-            Redirecting to login in <span id="seconds">5</span> seconds...
         </div>
     </div>
-
-    <script>
-        // Auto-redirect after 5 seconds
-        let seconds = 5;
-        const countdownElement = document.getElementById('seconds');
-        
-        const countdown = setInterval(() => {
-            seconds--;
-            countdownElement.textContent = seconds;
-            
-            if (seconds <= 0) {
-                clearInterval(countdown);
-                window.location.href = '/login';
-            }
-        }, 1000);
-
-        // Optional: Check if we're in an iframe and break out
-        if (window.top !== window.self) {
-            window.top.location = window.self.location;
-        }
-    </script>
 </body>
 </html>
