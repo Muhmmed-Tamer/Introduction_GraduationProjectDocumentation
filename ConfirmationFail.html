@@ -180,7 +180,6 @@
         <div class="button-group">
             <button onclick="resendConfirmation()" class="btn">Resend Confirmation Email</button>
             <a href="/contact-support" class="btn secondary-btn">Contact Support</a>
-            <a href="/" class="btn secondary-btn">Return to Home</a>
         </div>
 
         <div class="support-contact">
@@ -188,52 +187,5 @@
             <a href="mailto:support@yourapp.com">support@yourapp.com</a>
         </div>
     </div>
-
-    <script>
-        function resendConfirmation() {
-            // Get userId from URL parameters or storage
-            const urlParams = new URLSearchParams(window.location.search);
-            const userId = urlParams.get('userId');
-            
-            if (userId) {
-                // Call your API to resend confirmation email
-                fetch('/api/auth/resend-confirmation', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ userId: userId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Confirmation email sent successfully! Please check your inbox.');
-                    } else {
-                        alert('Failed to send confirmation email. Please try again.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred. Please try again.');
-                });
-            } else {
-                alert('Unable to resend confirmation. Please contact support.');
-            }
-        }
-
-        // Optional: Parse error details from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const errorMessage = urlParams.get('error');
-        
-        if (errorMessage) {
-            // You could display the specific error message
-            console.log('Error details:', errorMessage);
-        }
-
-        // Prevent iframe embedding
-        if (window.top !== window.self) {
-            window.top.location = window.self.location;
-        }
-    </script>
 </body>
 </html>
