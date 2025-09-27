@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmed Successfully</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        .success-icon::before {
+            content: '✓';
+            color: white;
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        p {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .login-btn {
+            background: #667eea;
+        }
+
+        .login-btn:hover {
+            background: #5a6fd8;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .countdown {
+            margin-top: 20px;
+            color: #a0aec0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon"></div>
+        <h1>Email Confirmed Successfully! 🎉</h1>
+        <p>Your email address has been verified. You can now access all features of our platform. Thank you for completing the verification process!</p>
+        
+        <div class="button-group">
+            <a href="/login" class="btn login-btn">Go to Login</a>
+            <a href="/" class="btn">Return to Home</a>
+        </div>
+        
+        <div class="countdown" id="countdown">
+            Redirecting to login in <span id="seconds">5</span> seconds...
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect after 5 seconds
+        let seconds = 5;
+        const countdownElement = document.getElementById('seconds');
+        
+        const countdown = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.href = '/login';
+            }
+        }, 1000);
+
+        // Optional: Check if we're in an iframe and break out
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+    </script>
+</body>
+</html>
